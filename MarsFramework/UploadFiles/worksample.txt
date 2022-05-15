@@ -1,0 +1,66 @@
+Work Example file for Share Skill
+
+ATTEMPT 2:
+Compiled fileupload_x64.au3 (AutoIt script) to an executable file to 
+perform file upload by using this compiled script in the test:
+	Process.Start("G:\onboarding.nunit\MarsFramework\AutoIt\fileupload_x64.exe");
+
+ATTEMPT 1:
+This code is not working if ran directly from the project:
+	AutoItX3 autoIt = new AutoItX3();
+	autoIt.WinActivate("Open");
+	autoIt.Send(@"G:\onboarding.nunit\MarsFramework\AutoIT\Fileupload\worksample.txt");
+	autoIt.Send("{ENTER}");
+
+RE-ATTEMPTED 1:
+ERROR:
+autoit Retrieving the COM class factory for component with CLSID {1A671297-FA74-4422-80FA-6C5D8CE4DE04} failed due to the following error: 80040154 Class not registered (0x80040154 (REGDB_E_CLASSNOTREG)).
+
+SOLUTION:
+https://stackoverflow.com/questions/14644258/how-to-get-autoit-reference-working-in-c
+
+
+CONCLUSION: Using attempt 1. No longer using attempt 2.
+
+
+Reference:
+https://www.toolsqa.com/selenium-webdriver/autoit-selenium-webdriver/
+https://www.guru99.com/use-autoit-selenium.html
+https://youtu.be/vmWmCw_8WsE
+
+
+OTHER NOTES
+============================================================
+        [Test]
+        public void T04_ClearShareSkill()
+        {
+            // Create Extentreport test, name extracted from current method name
+            test = extent.CreateTest(System.Reflection.MethodBase.GetCurrentMethod().Name);
+
+            try
+            {
+                // Action                
+                ManageListings ManageListingsObj = new ManageListings();
+
+                int xTimesToDelete = 40;
+
+                for (int i = 0; i < xTimesToDelete; i++)
+                {
+                    ManageListingsObj.DeleteShareSkill();
+                }
+
+                // Assertion              
+                string resultStatusNotification = ManageListingsObj.GetNotification();
+                string expectedStatusNotification = "has been deleted";
+                Assert.That(resultStatusNotification.Contains(expectedStatusNotification));
+
+                // Log status in Extentreports
+                test.Log(Status.Pass, "Passed, action successfull");
+            }
+            catch (Exception ex)
+            {
+                // Log status in Extentreports
+                test.Log(Status.Fail, "Failed, action unsuccessfull");
+                test.Log(Status.Info, ex.Message);
+            }
+        }
