@@ -128,7 +128,7 @@ namespace MarsFramework.Pages
             try
             {
                 ShareSkillButton.Click();
-                WaitForShareSkillPageToLoad();
+                WaitForPageToLoad();
                 Title.SendKeys(ExcelLib.ReadData(testCase, "Title"));
                 Description.SendKeys(ExcelLib.ReadData(testCase, "Description"));
                 CategoryDropDown.SendKeys(ExcelLib.ReadData(testCase, "Category"));
@@ -177,10 +177,10 @@ namespace MarsFramework.Pages
             try
             {             
                 manageListingsLink.Click();
-                WaitForManageListingToLoad();
+                WaitForPageToLoad();
                 ManageListings ManageListngObj = new ManageListings();
                 ManageListngObj.edit.Click();
-                WaitForShareSkillPageToLoad();
+                WaitForPageToLoad();
                 Title.Clear();
                 Title.SendKeys(ExcelLib.ReadData(2, "Title"));
                 wait(1);
@@ -190,7 +190,7 @@ namespace MarsFramework.Pages
                 CategoryDropDown.SendKeys(ExcelLib.ReadData(2, "Category"));
                 wait(1);
                 Save.Click();
-                WaitForManageListingToLoad();
+                WaitForPageToLoad();
             }
             catch (Exception e) 
             {
@@ -207,7 +207,7 @@ namespace MarsFramework.Pages
             try
             {
                 ShareSkillButton.Click();
-                WaitForShareSkillPageToLoad();
+                WaitForPageToLoad();
                 // Title.SendKeys(ExcelLib.ReadData(testCase, "Title"));
                 Description.SendKeys(ExcelLib.ReadData(testCase, "Description"));
                 CategoryDropDown.SendKeys(ExcelLib.ReadData(testCase, "Category"));
@@ -256,7 +256,7 @@ namespace MarsFramework.Pages
             try
             {
                 ShareSkillButton.Click();
-                WaitForShareSkillPageToLoad();
+                WaitForPageToLoad();
                 Title.SendKeys(ExcelLib.ReadData(testCase, "Title"));
                 Description.SendKeys(ExcelLib.ReadData(testCase, "Description"));
                 CategoryDropDown.SendKeys(ExcelLib.ReadData(testCase, "Category"));
@@ -305,7 +305,7 @@ namespace MarsFramework.Pages
             try
             {
                 ShareSkillButton.Click();
-                WaitForShareSkillPageToLoad();
+                WaitForPageToLoad();
                 Title.SendKeys(ExcelLib.ReadData(testCase, "Title"));
                 Description.SendKeys(ExcelLib.ReadData(testCase, "Description"));
                 CategoryDropDown.SendKeys(ExcelLib.ReadData(testCase, "Category"));
@@ -327,9 +327,10 @@ namespace MarsFramework.Pages
 
                 AutoItX3 autoIt = new AutoItX3();
                 string workSampleFile = (ExcelLib.ReadData(testCase, "Work Samples"));
+                workSampleFile = Base.FileUploadPath + workSampleFile;
                 autoIt.WinActivate("Open");
                 Thread.Sleep(1000);
-                autoIt.Send(Base.FileUploadPath + workSampleFile);
+                autoIt.Send(workSampleFile);
                 Thread.Sleep(2000);
                 autoIt.Send("{ENTER}");
                 Thread.Sleep(1000);
@@ -361,7 +362,7 @@ namespace MarsFramework.Pages
 
         public void PopulateTimeInfo(string whichTime, string timeToExtract) 
         {
-            // breaking strings apart to extract date
+            // breaking string apart to extract date
             string[] _eTime = timeToExtract.Split(' ');
 
             // breaking date to hour and minute chunks

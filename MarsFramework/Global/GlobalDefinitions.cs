@@ -27,24 +27,56 @@ namespace MarsFramework.Global
         }
 
 
-        public static IWebElement WaitForElement(IWebDriver driver, By by, int timeOutinSeconds)
+        public static IWebElement WaitForElement(IWebDriver driver, By by, int timeOutinSeconds = 10)
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeOutinSeconds));
             return (wait.Until(ExpectedConditions.ElementIsVisible(by)));
         }
 
-        public static void WaitForShareSkillPageToLoad()
+        public static void WaitFor(string xpath, string description = null) 
         {
-            WaitForElement(driver, By.XPath("//*[@name='title']"), 10);
-            // Adding time for unexpected time delay
-            Thread.Sleep(1000);
+            // description paramter is optional,
+            // it is just for descirbing the element.
+
+            WaitForElement(driver, By.XPath(xpath));
         }
 
 
-        public static void WaitForManageListingToLoad()
+        public static void WaitForPageToLoad() 
         {
-            WaitForElement(driver, By.XPath("//*[@id='listing-management-section']/div[2]/div[1]/div[2]"), 10);
+            String title = driver.Title;
+
+            if (title == "Profile")
+            {
+
+            }            
+            else if (title == "ServiceListing") // ShareSkill
+            {
+                WaitFor("//*[@name='title']", "Title field");
+                // Adding time for unexpected time delay
+                Thread.Sleep(1000);
+            }
+            else if (title == "ListingManagement") // Manage Listings
+            {
+                WaitFor("//*[@id='listing-management-section']/div[2]/div[1]/div[2]", "Pagination at the bottom page");
+            }
+            else
+            { 
+                // do nothing
+            }
         }
+        //public static void WaitForShareSkillPageToLoad()
+        //{
+        //    WaitForElement(driver, By.XPath("//*[@name='title']"), 10);
+        //    // Adding time for unexpected time delay
+        //    Thread.Sleep(1000);
+        //}
+
+
+        //public static void WaitForManageListingToLoad()
+        //{
+        //    WaitForElement(driver, By.XPath("//*[@id='listing-management-section']/div[2]/div[1]/div[2]"), 10);
+        //}
 
         #endregion
 

@@ -68,7 +68,7 @@ namespace MarsFramework.Pages
             try
             {
                 manageListingsLink.Click();
-                WaitForManageListingToLoad();
+                WaitForPageToLoad();
                 delete.Click();
                 yesButton.Click();
                 Thread.Sleep(1000);
