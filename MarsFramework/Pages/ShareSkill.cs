@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 using System;
+using System.IO;
 using System.Threading;
 using System.Diagnostics;
 using static MarsFramework.Global.GlobalDefinitions;
@@ -327,10 +328,9 @@ namespace MarsFramework.Pages
 
                 AutoItX3 autoIt = new AutoItX3();
                 string workSampleFile = (ExcelLib.ReadData(testCase, "Work Samples"));
-                workSampleFile = Base.FileUploadPath + workSampleFile;
                 autoIt.WinActivate("Open");
                 Thread.Sleep(1000);
-                autoIt.Send(workSampleFile);
+                autoIt.Send(Base.FileUploadPath + workSampleFile);
                 Thread.Sleep(2000);
                 autoIt.Send("{ENTER}");
                 Thread.Sleep(1000);
