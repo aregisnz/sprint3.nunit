@@ -11,7 +11,4 @@
 - AutoIT
 - Resource Manager
 
-**TASK: Automate any 3 complex test cases from Share Skills and Manage Listing modules:**
-- Enter Share SkillS
-- Edit Share Skill
-- Delete Share Skill
+Forked from Main branch: Standard-Sprint
