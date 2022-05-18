@@ -41,10 +41,10 @@ namespace MarsFramework
                 // Assertion
                 string resultStatusNotification = ManageListingsObj.GetNotification();
                 string expectedStatusNotification = "Service Listing Added successfully";
-                Assert.That(resultStatusNotification, Is.EqualTo(expectedStatusNotification));
-                Console.WriteLine("Directory --> " + Directory.GetCurrentDirectory());
+                Assert.That(resultStatusNotification, Is.EqualTo(expectedStatusNotification));                
                 // Log status in Extentreports
                 test.Log(Status.Pass, "Passed, action successfull.");
+                
             }
             catch (Exception ex)
             {

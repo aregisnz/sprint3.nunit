@@ -33,6 +33,7 @@ namespace MarsFramework.Global
             return (wait.Until(ExpectedConditions.ElementIsVisible(by)));
         }
 
+
         public static void WaitFor(string xpath, string description = null) 
         {
             // description paramter is optional,
@@ -65,18 +66,6 @@ namespace MarsFramework.Global
                 // do nothing
             }
         }
-        //public static void WaitForShareSkillPageToLoad()
-        //{
-        //    WaitForElement(driver, By.XPath("//*[@name='title']"), 10);
-        //    // Adding time for unexpected time delay
-        //    Thread.Sleep(1000);
-        //}
-
-
-        //public static void WaitForManageListingToLoad()
-        //{
-        //    WaitForElement(driver, By.XPath("//*[@id='listing-management-section']/div[2]/div[1]/div[2]"), 10);
-        //}
 
         #endregion
 

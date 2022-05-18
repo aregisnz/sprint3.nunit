@@ -67,9 +67,12 @@ namespace MarsFramework.Global
         [TearDown]
         public void TearDown()
         {
-            // Take a screenshot          
-            string img = SaveScreenShotClass.SaveScreenshot(driver, "Screenshot");
-            test.AddScreenCaptureFromPath(img);
+            if (TestContext.CurrentContext.Result.Outcome.ToString() != "Passed")
+            {
+                // Take a screenshot          
+                string img = SaveScreenShotClass.SaveScreenshot(driver, "Screenshot");
+                test.AddScreenCaptureFromPath(img);
+            }
 
             // Quit browser
             driver.Quit();
